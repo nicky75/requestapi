@@ -14,7 +14,7 @@ Simple Laravel project for doing API request to third party.
 
 You can open http://localhost:8000 in your browser to check the result. Simple test on API request call is available with `php artisan test`
 
-API endpoints can be accessed also like this from third party tools, for example Postman like this:
+API endpoints can be accessed also from third party tools, for example Postman like this:
 
 `http://localhost:8000/api/services`
 
