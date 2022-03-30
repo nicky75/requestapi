@@ -8,15 +8,20 @@ use App\Services\Service;
 
 class ServicesController extends Controller
 {
+  private $apiService;
 
+  public function __construct(Service $apiService)
+  {
+    $this->apiService = $apiService;
+  }
   /**
    * Routes for get the token
    *
    * @return String
    */
-  private function getToken(Request $request, Service $apiService)
+  private function getToken(Request $request)
   {
-    $post = $apiService->token();
+    $post = $this->apiService->token();
     $request->session()->put('token', $post->access_token);
     return $post->access_token;
   }
@@ -26,14 +31,14 @@ class ServicesController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index(Request $request, Service $apiService)
+  public function index(Request $request)
   {
     try {
-      $token = $request->session()->get('token') ?? $this->getToken($request, $apiService);
-      $list = $apiService->list($token);
+      $token = $request->session()->get('token') ?? $this->getToken($request);
+      $list = $this->apiService->list($token);
       if (isset($list->status_code) && $list->status_code == '401') {
-        $token = $this->getToken($request, $apiService);
-        $list = $apiService->list($token);
+        $token = $this->getToken($request);
+        $list = $this->apiService->list($token);
       }
       return $this->responseOk($list);
     } catch (\Exception $error) {
@@ -46,14 +51,14 @@ class ServicesController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function show($id, Request $request, Service $apiService)
+  public function show($id, Request $request)
   {
     try {
-      $token = $request->session()->get('token') ?? $this->getToken($request, $apiService);
-      $service = $apiService->findById($id, $token);
+      $token = $request->session()->get('token') ?? $this->getToken($request);
+      $service = $this->apiService->findById($id, $token);
       if (isset($service->status_code) && $service->status_code == '401') {
-        $token = $this->getToken($request, $apiService);
-        $service = $apiService->findById($id, $token);
+        $token = $this->getToken($request);
+        $service = $this->apiService->findById($id, $token);
       }
       return $this->responseOk($service);
     } catch (\Exception $error) {

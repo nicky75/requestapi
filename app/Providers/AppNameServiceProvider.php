@@ -23,7 +23,7 @@ class AppNameServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('App\Services\ApiService', function($app) {
+        $this->app->singleton('App\Services\ServiceApi', function($app) {
           return new Service();
         });
     }
