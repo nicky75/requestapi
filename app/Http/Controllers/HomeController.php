@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Service;
+use App\Services\ServiceApi;
 
 class HomeController extends Controller
 {
 
     private $apiService;
 
-    public function __construct(Service $apiService) {
+    public function __construct(ServiceApi $apiService) {
         $this->apiService = $apiService;
     }
     /**
