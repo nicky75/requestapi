@@ -18,4 +18,8 @@ API endpoints can be accessed also like this from third party tools, for example
 
 `http://localhost:8000/api/services`
 
-to get the likt of the services.
+to get the list of the services or 
+
+`http://localhost:8000/api/services/ID_OF_SERVICE` 
+
+to get detailed view of a service.
