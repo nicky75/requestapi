@@ -35,7 +35,7 @@ class ServicesController extends Controller
         $token = $this->getToken($request, $apiService);
         $list = $apiService->list($token);
       }
-      return $this->responseList($list);
+      return $this->responseOk($list);
     } catch (\Exception $error) {
       return $this->responseException($error);
     }
@@ -55,7 +55,7 @@ class ServicesController extends Controller
         $token = $this->getToken($request, $apiService);
         $service = $apiService->findById($id, $token);
       }
-      return $this->responseShow($service);
+      return $this->responseOk($service);
     } catch (\Exception $error) {
       return $this->responseException($error);
     }

@@ -13,7 +13,7 @@
         @foreach ($services as $service)
         <tr>
             <td>{{ $service->name }}</td>
-            <td><a class="text-primary" href="/api/services/{{$service->id}}">View</a></td>
+            <td><a class="text-primary" href="/services/{{$service->id}}">View</a></td>
         </tr>
         @endforeach
     </table>

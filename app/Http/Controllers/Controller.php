@@ -11,7 +11,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function responseException($resp)
+    public function responseError($resp)
     {
         return view('layouts.errors', ['errors' => [$resp->getMessage()]]);
     }
@@ -24,5 +24,15 @@ class Controller extends BaseController
     public function responseList($list)
     {
         return view('services.index', ['services' => $list->services]);
+    }
+
+    public function responseOk($resp)
+    {
+        return response()->json($resp, 200);
+    }
+
+    public function responseException($resp)
+    {
+        return response()->json(['message' => $resp->getMessage(), 'trace' => $resp->getTraceAsString()], 500);
     }
 }
